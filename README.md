@@ -53,24 +53,18 @@ chainlit run app.py -w
 │   ├── part_2_graph.py
 │   ├── part_3_graph.py
 │   ├── part_4_graph.py
-├── 📂 tools                   # Helper functions & APIs
-│   ├── CompleteOrEscalate.py
-│   ├── utility_functions.py
-│   ├── config.py
-│   ├── database.py
-│   ├── logger.py
-│   ├── api_clients.py
-├── 📂 tests                   # Unit tests
-│   ├── test_order_management.py
-│   ├── test_food_search.py
-│   ├── test_conversation.py
-│   ├── test_suggestions.py
+│   ├── supergraph.py
 ├── main.py                    # Entry point
 ├── requirements.txt            # Dependencies
 ├── README.md                   # Project documentation
 └── .env                        # Environment variables
 ```
 
+## 🛠️ Chatbot Architecture
+
+This is an overview of the chatbot’s architecture and workflow:
+
+![Chatbot Overview](assets/chatbot_overview.jpg)
 
 ### 📢 Contribution
 Contributions are welcome! Please open an issue or submit a pull request. 😊
