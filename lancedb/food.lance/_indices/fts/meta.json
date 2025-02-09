@@ -1,0 +1,54 @@
+{
+  "index_settings": {
+    "docstore_compression": "lz4",
+    "docstore_blocksize": 16384
+  },
+  "segments": [
+    {
+      "segment_id": "2d30e8fc-f701-4031-b131-e04acc20cfbf",
+      "max_doc": 371,
+      "deletes": null
+    },
+    {
+      "segment_id": "81fb0602-607c-4397-94c0-08ad289447a1",
+      "max_doc": 253,
+      "deletes": null
+    },
+    {
+      "segment_id": "d797006a-772e-432f-b84f-c93fa66e80a1",
+      "max_doc": 113,
+      "deletes": null
+    },
+    {
+      "segment_id": "83f74eaf-89ed-4bc2-abac-b8b4eda6264a",
+      "max_doc": 1,
+      "deletes": null
+    }
+  ],
+  "schema": [
+    {
+      "name": "doc_id",
+      "type": "i64",
+      "options": {
+        "indexed": false,
+        "fieldnorms": false,
+        "fast": false,
+        "stored": true
+      }
+    },
+    {
+      "name": "text",
+      "type": "text",
+      "options": {
+        "indexing": {
+          "record": "position",
+          "fieldnorms": true,
+          "tokenizer": "default"
+        },
+        "stored": true,
+        "fast": false
+      }
+    }
+  ],
+  "opstamp": 742
+}
