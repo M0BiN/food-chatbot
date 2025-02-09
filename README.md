@@ -27,12 +27,16 @@ pip install -r requirements.txt
 ### 3️⃣ Set up environment variables
 Create a .env file and add:
 ```bash
-GOOGLE_GEMINI_API_KEY=your_api_key_here
-DATABASE_URL=mysql://user:password@localhost/foodchat
+OPENAI_API_KEY = XXX
+LANGCHAIN_API_KEY = XXX
+TAVILY_API_KEY = XXX
+GOOGLE_API_KEY = XXX
+LLAMA_CLOUD_API_KEY = XXX
+PYTHONUTF8=1
 ```
 ### 4️⃣ Run the chatbot
 ```bash
-python main.py
+chainlit run app.py -w
 ```
 
 ### 📂 Project Structure
