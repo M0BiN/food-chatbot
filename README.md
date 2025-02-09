@@ -36,6 +36,7 @@ python main.py
 ```
 
 ### 📂 Project Structure
+```bash
 📂 food-chatbot
 ├── 📂 agents                  # AI Agents handling specific tasks
 │   ├── doc_retrieval_agent.py
@@ -64,6 +65,7 @@ python main.py
 ├── requirements.txt            # Dependencies
 ├── README.md                   # Project documentation
 └── .env                        # Environment variables
+```
 
 
 ### 📢 Contribution
