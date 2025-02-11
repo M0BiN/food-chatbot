@@ -10,35 +10,34 @@ from tools import CompleteOrEscalate
 @tool
 class ToOrderManagement(BaseModel):
     """
-    A tool for handling user operations related to managing orders, including canceling orders, 
-    providing feedback, and checking order status.
+A tool for managing orders, including cancellations, feedback, and status checks.
 
-    **Purpose:**
-    - Automate order-related operations based on user input with strict adherence to required parameters.
+**Purpose:**
+- Automates order-related operations based on user input while enforcing required parameters.
 
-    **Usage:**
-    - Provide exactly the required fields based on the selected operation type.
-    - Ensure inputs are valid and align with the described requirements for the operation.
+**Usage:**
+- Provide the necessary fields based on the selected operation.
+- Ensure inputs are valid and meet the operation's requirements.
 
-    **Field Requirements by Operation:**
-    - `cancel_order`:
-        - `order_id` (int): The unique identifier for the user's order.
-        - `phone_number` (str): The user's phone number for verification purposes.
-    - `comment_order`:
-        - `order_id` (int): The unique identifier for the user's order.
-        - `person_name` (str): The name of the person providing the comment.
-        - `comment` (str): The content of the feedback.
-    - `check_order_status`:
-        - `order_id` (int): The unique identifier for the user's order.
+**Field Requirements by Operation:**
+- `cancel_order`:
+    - `order_id` (int): Unique order identifier.
+    - `phone_number` (str): Required for verification.
+- `comment_order`:
+    - `order_id` (int): Unique order identifier.
+    - `person_name` (str): Name of the feedback provider.
+    - `comment` (str): Feedback content.
+- `check_order_status`:
+    - `order_id` (int): Unique order identifier.
 
-    **Field Descriptions:**
-    - `operation`: Specifies the type of operation the user wants to perform.
-    - `order_id`: (Required for all operations) The unique identifier for the user's order.
-    - `phone_number`: (Required for `cancel_order`) The user's phone number for verification.
-    - `person_name`: (Required for `comment_order`) The name of the person providing feedback.
-    - `comment`: (Required for `comment_order`) The content of the user's feedback.
+**Field Descriptions:**
+- `operation`: Type of operation to perform.
+- `order_id`: Required for all operations.
+- `phone_number`: Required for `cancel_order`.
+- `person_name`: Required for `comment_order`.
+- `comment`: Required for `comment_order`.
+"""
 
-    """
 
     operation: Literal["cancel_order", "comment_order", "check_order_status"] = Field(
         description="The type of operation the user wants to perform (e.g., 'cancel_order', 'comment_order', 'check_order_status')."

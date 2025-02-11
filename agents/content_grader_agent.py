@@ -11,7 +11,7 @@ class ToGradeContent(BaseModel):
     A tool for grading cleaned and structured content to evaluate if it sufficiently answers the user query.
 
     **Purpose:**
-    - This tool is designed to assess whether the cleaned and structured content is relevant and comprehensive enough 
+    - Designed to assess whether the cleaned and structured content is relevant and comprehensive enough 
       to address the user's original query.
     - It ensures that the content can serve as a reliable basis for answering the query.
 

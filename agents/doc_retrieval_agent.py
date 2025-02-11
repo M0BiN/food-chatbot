@@ -68,6 +68,8 @@ doc_retrieval_prompt = ChatPromptTemplate.from_messages(
             "\n- **Strict Delegation**: Focus solely on retrieving and refining content through the tools without performing additional processing or evaluation."
             "\n- **Error Handling**: If the `retrieve_from_doc` tool returns `['NO RESULT!']`, pass this value to the `ToFilter` tool as the `retrieved_content` to ensure consistency."
             "\n\nYour success is measured by how effectively you invoke the tools and delegate tasks without performing any additional actions."
+            "\n ** Remember to call 'ToFilter' to clean retrieved data after you used 'retrieve_from_doc'"
+            "\n use 'retrieve_from_doc' only one time! watch the history to see if you've called it already or not"
         ),
         ("placeholder", "{messages}"),
     ]

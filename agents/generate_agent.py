@@ -58,6 +58,4 @@ generate_prompt = ChatPromptTemplate.from_messages(
 generate_safe_tools = []
 generate_sensitive_tools = []
 generate_tools = generate_safe_tools + generate_sensitive_tools
-generate_runnable = generate_prompt | llm.bind_tools(
-    generate_tools + []
-)
+generate_runnable = generate_prompt | llm

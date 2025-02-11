@@ -1,10 +1,9 @@
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_google_genai import ChatGoogleGenerativeAI
 from datetime import datetime
 from langchain_core.messages import ToolMessage
 from langgraph.graph import StateGraph, START, END
 from utilities import create_tool_node_with_fallback
-from config import gemini_llm_params, gemini_safe
+from config import llm
 from langgraph.checkpoint.memory import MemorySaver
 from agents.doc_retrieval_agent import ToDocRetrieval
 from agents.order_management_agent import ToOrderManagement, order_management_sensitive_tools
@@ -52,7 +51,7 @@ def leave_skill(state: State) -> dict:
 # The top-level assistant performs general Q&A and delegates specialized tasks to other assistants.
 # The task delegation is a simple form of semantic routing / does simple intent detection
 # llm = ChatAnthropic(model="claude-3-haiku-20240307")
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", config=gemini_llm_params, safety_settings=gemini_safe)
+# llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", config=gemini_llm_params, safety_settings=gemini_safe)
 
 
 primary_assistant_prompt = ChatPromptTemplate.from_messages(

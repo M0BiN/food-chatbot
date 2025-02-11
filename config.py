@@ -1,27 +1,8 @@
 
-from google.generativeai.types import HarmCategory, HarmBlockThreshold
-from langchain_google_genai import ChatGoogleGenerativeAI
-
-
-llm_maxtokens = 512
-llm_temperature = 0.01
+from langchain_community.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 
 
 
-
-
-
-
-gemini_llm_params = {
-        'temperature': llm_temperature,
-        'max_output_tokens': llm_maxtokens
-}
-
-gemini_safe = {
-        HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
-        HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
-        HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
-        HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE
-}
-
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", config=gemini_llm_params, safety_settings=gemini_safe)
+BASE_URL = "https://api.avalai.ir/v1"
+llm = ChatOpenAI(model="gpt-4o", base_url=BASE_URL, temperature=0.0001, max_tokens=2048)

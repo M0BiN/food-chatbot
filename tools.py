@@ -203,28 +203,23 @@ class CompleteOrEscalate(BaseModel):
     """
     🚀 **CompleteOrEscalate Tool**
 
-    **Purpose:**
-    This tool is designed to either finalize your current task or to escalate/end a conversation when you cannot proceed with the user's request. It acts as a signal to indicate that:
-      - Your assigned task has been successfully completed.
-      - The user's request is off-topic or unsupported.
-      - You have attempted to handle the request but cannot find a solution.
+    **Purpose:**  
+    This tool finalizes a task or escalates a request when it cannot be fulfilled. It signals that:  
+    - A task is successfully completed.  
+    - A request is off-topic or unsupported.  
+    - No solution was found after reasonable attempts.  
 
-    **Usage:**
+    **Usage:**  
     - **Finalizing a Task:**  
-      When you have successfully completed your task (for example, after suggesting available food items), call this tool with:
-        - `cancel` set to `False`
-        - A brief explanation in `reason` summarizing your findings.
-    - **Escalating or Terminating a Conversation:**  
-      If the user's request falls outside your scope or you cannot find a solution after reasonable attempts, call this tool immediately with:
-        - `cancel` set to `True`
-        - A clear, concise explanation in `reason` stating why the conversation is being ended or escalated.
+    - `cancel`: `False`  
+    - `reason`: Brief summary of the completed task.  
+    - **Escalating/Terminating:**  
+    - `cancel`: `True`  
+    - `reason`: Explanation of why escalation is needed.  
 
-    **Fields:**
-    - `cancel` (bool):  
-        - **False:** Indicates that the task is complete and no further action is needed.  
-        - **True:** Indicates that the conversation should be terminated or escalated.
-    - `reason` (str):  
-        - Provide a clear and concise explanation for why you are finalizing or escalating the task.
+    **Fields:**  
+    - `cancel` (bool): `False` for completion, `True` for escalation.  
+    - `reason` (str): Explanation for finalizing or escalating.  
     """
     cancel: bool
     reason: str
