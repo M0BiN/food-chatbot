@@ -70,6 +70,7 @@ doc_retrieval_prompt = ChatPromptTemplate.from_messages(
             "\n\nYour success is measured by how effectively you invoke the tools and delegate tasks without performing any additional actions."
             "\n ** Remember to call 'ToFilter' to clean retrieved data after you used 'retrieve_from_doc'"
             "\n use 'retrieve_from_doc' only one time! watch the history to see if you've called it already or not"
+            "\n if the 'retrieve_from_doc', just call 'ToFilter' with no result string input"
         ),
         ("placeholder", "{messages}"),
     ]

@@ -9,7 +9,6 @@ class ToWebSearch(BaseModel):
 
     **Purpose:**
     - This tool is used when the `cleaned_content` does not provide adequate or relevant information to sufficiently address the `user_query`.
-    - It retrieves additional information from the web to ensure the user's query can be answered effectively.
 
     **Usage Guidelines:**
     - Invoke this tool only if the `content_grader` determines that the `cleaned_content` is irrelevant or insufficient to answer the user's question.

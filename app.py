@@ -101,6 +101,9 @@ async def on_message(msg: cl.Message):
             await asyncio.gather(*tasks)
     except Exception as e:
         print(e)
+        print("*"*100)
+        state = supergraph.get_state(config=config)
+        print(state)
         await final_answer.stream_token("I'm sorry, but I couldn't process your request at this time. Could you try rephrasing or providing it in a different format?")
 
     await final_answer.send()  # Send the final response after streaming completes

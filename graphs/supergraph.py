@@ -34,7 +34,8 @@ def leave_skill(state: State) -> dict:
             ToolMessage(
                 content="Resuming dialog with the host assistant. Please reflect on the past conversation and assist the user as needed.",
                 tool_call_id=state["messages"][-1].tool_calls[0]["id"],
-                name="leave_skill"
+                name="leave_skill",
+                role="tool"
             )
         )
     return {

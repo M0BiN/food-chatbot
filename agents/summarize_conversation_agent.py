@@ -53,9 +53,7 @@ summarize_conversation_safe_tools = []
 summarize_conversation_sensitive_tools = []
 summarize_conversation_tools = summarize_conversation_safe_tools + summarize_conversation_sensitive_tools
 
-summarize_conversation_runnable = summarize_conversation_prompt | llm.bind_tools(
-    summarize_conversation_tools + []
-)
+summarize_conversation_runnable = summarize_conversation_prompt | llm
 
 
 
@@ -80,8 +78,8 @@ def summarize_conversation(state):
     messages = state["messages"] + [HumanMessage(content=summary_message)]
     response = summarize_conversation_runnable.invoke(messages)
 
-    # Delete all but the 3 most recent messages
-    delete_messages = [RemoveMessage(id=m.id) for m in state["messages"][:-3]]
+    # Delete all but the 1 most recent messages
+    delete_messages = [RemoveMessage(id=m.id) for m in state["messages"][:-1]]
     return {"summary": response.content, "messages": delete_messages}
 
 

@@ -68,8 +68,9 @@ def create_entry_node(assistant_name: str, new_dialog_state: str) -> Callable:
             "The user's intent remains unresolved, and your job is to address it by utilizing the provided tools to perform the required tasks. "
             f"Remember, you are {assistant_name}"
             "Do not disclose your identity or role to the user; focus solely on fulfilling your responsibilities and ensuring the user's needs are met.",
-    tool_call_id=tool_call_id,
-    name=assistant_name
+        tool_call_id=tool_call_id,
+        name=assistant_name,
+        role="tool"
 )
 
             ],
@@ -96,7 +97,6 @@ builder.add_node(
 )
 
 builder.add_edge(START, "doc_retrieval")
-builder.add_edge("generate", END)
 
 
 builder.add_node(
@@ -156,6 +156,7 @@ builder.add_node(
     create_entry_node("Answer Generate Assistant", "generate"),
 )
 builder.add_edge("enter_generate", "generate")
+builder.add_edge("generate", END)
 
 
 

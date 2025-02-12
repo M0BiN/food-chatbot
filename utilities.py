@@ -1,4 +1,3 @@
-from langchain_core.messages import ToolMessage
 from langchain_core.runnables import RunnableLambda
 from langgraph.prebuilt import ToolNode
 import lancedb
@@ -19,6 +18,7 @@ def handle_tool_error(state) -> dict:
             ToolMessage(
                 content=f"Error: {repr(error)}\n please fix your mistakes.",
                 tool_call_id=tc["id"],
+                role="tool"
             )
             for tc in tool_calls
         ]
@@ -68,12 +68,16 @@ class SearchResult(TypedDict):
     _relevance_score: float
 
 def document_search(query:str, min_score:float=0.65)->List[SearchResult]:
-    return [item for item in (food_table
-    .search(query, query_type="hybrid")
-    .limit(2)
-    .rerank(reranker=reranker)
-    .select(["id", "text"])
-    .to_list()) if item["_relevance_score"] > min_score]
+    try:
+        return [item for item in (food_table
+        .search(query, query_type="hybrid")
+        .limit(2)
+        .rerank(reranker=reranker)
+        .select(["id", "text"])
+        .to_list()) if item["_relevance_score"] > min_score]
+    except Exception as e:
+        print(e)
+        return "NO RESULT"
 
 
 def update_dialog_stack(left: list[str], right: Optional[str]) -> list[str]:
@@ -117,7 +121,7 @@ class Assistant:
 
             result = self.runnable.invoke(state)
             print("*"*100)
-            print(result)
+            print(state["messages"])
             print("*"*100)
             # if self.debug:
             #     print("*"*100)
@@ -148,7 +152,8 @@ def create_entry_node(assistant_name: str, new_dialog_state: str) -> Callable:
             f"Remember, you are {assistant_name}"
             "Do not disclose your identity or role to the user; focus solely on fulfilling your responsibilities and ensuring the user's needs are met.",
     tool_call_id=tool_call_id,
-    name=assistant_name
+    name=assistant_name,
+    role="tool"
 )
 
             ],
