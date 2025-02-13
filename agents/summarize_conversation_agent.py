@@ -78,8 +78,8 @@ def summarize_conversation(state):
     messages = state["messages"] + [HumanMessage(content=summary_message)]
     response = summarize_conversation_runnable.invoke(messages)
 
-    # Delete all but the 1 most recent messages
-    delete_messages = [RemoveMessage(id=m.id) for m in state["messages"][:-1]]
+    # Delete all but the 2 most recent messages
+    delete_messages = [RemoveMessage(id=m.id) for m in state["messages"][:-2]]
     return {"summary": response.content, "messages": delete_messages}
 
 
