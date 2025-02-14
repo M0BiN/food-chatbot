@@ -6,5 +6,5 @@ langgraph==0.2.70
 Levenshtein==0.26.1
 llama-index==0.12.16
 sentence-transformers==3.4.1
-setuptools==65.5.0
 tantivy==0.22.0
+tinycss2==1.4.0

@@ -88,9 +88,6 @@ def should_summarize(state):
     """Return the next node to execute."""
     
     messages = state["messages"]
-    # print("&&"*100)
-    # print(len(messages))
-    # If there are more than 18 messages, then we summarize the conversation
     if len(messages) > 18:
         return "summarize_conversation"
     

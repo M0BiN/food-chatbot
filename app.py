@@ -5,14 +5,17 @@ import chainlit as cl
 import uuid
 def get_label(node_name:str):
     return {"primary_assistant":"Primary Assistant",
-    "generate":"Generate Response",
     "food_suggestion":"Food Suggester",
     "food_search":"Food Search",
     "doc_retrieval":"Doc Retrieval",
-    "enter_content_grader":"Content Grader",
-    "enter_generate":"Generate Response",
+    # "enter_content_grader":"Content Grader",
     "enter_web_search":"Web Search",
     "web_search":"Web Search",
+    "revisor":"Revisor",
+    "draft":"Draft",
+    "execute_tools":"Execute Tools",
+    "order_management":"Order Management"
+
     }.get(node_name, None)
     return ["primary_assistant", "generate", "food_suggestion", "food_search"]
 @cl.on_chat_start
@@ -50,7 +53,9 @@ async def on_message(msg: cl.Message):
 
             async def process_stream(resume:bool=False):
                 async for streamed_msg, metadata in async_stream(resume):
-
+                    if(get_label(metadata["langgraph_node"])):
+                        step.name = get_label(metadata["langgraph_node"])
+                        await step.update()
                     if (
                         streamed_msg.content
                         and not isinstance(streamed_msg, HumanMessage)

@@ -1,6 +1,6 @@
 from langchain_core.prompts import ChatPromptTemplate
 from datetime import datetime
-from langchain_core.messages import ToolMessage
+from langchain_core.messages import ToolMessage, HumanMessage
 from langgraph.graph import StateGraph, START, END
 from utilities import create_tool_node_with_fallback
 from config import llm
@@ -14,6 +14,7 @@ from graphs.part_1_graph import part_1_graph
 from graphs.part_2_graph import part_2_graph
 from graphs.part_3_graph import part_3_graph
 from graphs.part_4_graph import part_4_graph
+from graphs.part_5_graph import part_5_graph
 from utilities import Assistant, State, create_entry_node
 from typing import Literal
 from tools import CompleteOrEscalate
@@ -196,7 +197,11 @@ def route_primary_assistant(
 def route_management_assistant(
     state: State,
 ):  
-    tool_calls = state["messages"][-1].tool_calls
+    if hasattr(state["messages"][-1], "tool_calls") and state["messages"][-1].tool_calls:
+        tool_calls = state["messages"][-1].tool_calls
+    else:
+        tool_calls = None
+
     if tool_calls:
         did_cancel = any(tc["name"] == CompleteOrEscalate.__name__ for tc in tool_calls)
         if did_cancel:
@@ -272,7 +277,7 @@ builder.add_conditional_edges("search_food",route_management_assistant, ["leave_
 
 
 
-builder.add_node("suggest_food", part_4_graph)
+builder.add_node("suggest_food", part_5_graph)
 
 builder.add_node(
     "enter_suggestion_food",
