@@ -125,9 +125,10 @@ food_suggestion_prompt = ChatPromptTemplate.from_messages(
             "✔️ **Use `AnswerQuestion` as the sole response format—do not provide direct recommendations outside this structure.**\n"
             "✔️ **Maintain professional yet engaging language, avoiding technical process explanations.**\n"
             "✔️ **Ensure responses are structured, relevant, and user-friendly.**\n"
-            "✔️ **Try to understand and infer what the user is looking for.**\n"
-            "✔️ **Ensure the foods you offer are varied and diverse.**\n\n"
-            
+            "✔️ **Try to understand and infer what the user is looking for, maybe a category of foods is suitable for user(maybe).**\n"
+            "✔️ **Ensure the foods you offer are varied and diverse in names.**\n\n"
+            "✔️ **Your search query must be so it can find varied food name in web and dont worry about restaurant or locations in websearch query**\n\n"
+
             "📌 **REMEMBER:** Your response **must** be formatted correctly to fill the `AnswerQuestion` tool, ensuring accurate, validated, and structured food recommendations."
         ),
         ("user", "{messages}")
