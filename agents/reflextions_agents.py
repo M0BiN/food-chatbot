@@ -81,13 +81,15 @@ food_suggestion_prompt = ChatPromptTemplate.from_messages(
 
             "2️⃣ **Generate dish ideas internally based on provided context and criteria.**\n"
             "   - Prioritize common and relevant options that match user preferences.\n"
-            "   - Suggest a few options to provide choices.\n\n"
-            "   - dont add option which are not good to user request(even indirectly).\n"
+            "   - Ensure **a diverse selection of options**, avoiding repetition of similar dishes.\n"
+            "   - Aim for variety in cuisine styles, ingredients, flavors, and textures.\n"
+            "   - Do **not** add options that are unsuitable for the user request (even indirectly).\n\n"
 
             "3️⃣ **Verify availability using `available_food_search`.**\n"
             "   - **Only include dishes that are confirmed available.**\n"
             "   - If no matches are found, refine the search and retry.\n"
             "   - If multiple searches fail, proceed with the closest available alternatives.\n\n"
+            
             "4️⃣ **Fill the `FoodRecommendation` tool as follows:**\n"
             "   - **suggested_foods:**\n"
             "     ✅ Provide a structured list of **available** food options.\n"
@@ -95,7 +97,11 @@ food_suggestion_prompt = ChatPromptTemplate.from_messages(
             "       - **name**: The dish name.\n"
             "       - **price**: The confirmed price from `available_food_search`.\n"
             "       - **restaurant**: The location where the dish is available.\n"
-            "     ✅ Ensure all dishes meet the user's criteria (e.g., taste, dietary needs, cuisine, budget).\n\n"
+            "     ✅ Ensure all dishes meet the user's criteria (e.g., taste, dietary needs, cuisine, budget).\n"
+            "     ✅ **Ensure variety** in dish selection:\n"
+            "       - Different meal types (e.g., main courses, sides, desserts, drinks if applicable).\n"
+            "       - Diverse ingredients and preparation styles.\n"
+            "       - Avoid listing multiple versions of the same dish unless clearly requested by the user.\n\n"
 
             "   - **reflection:**\n"
             "     ✅ Critically analyze the recommendations.\n"
@@ -119,13 +125,15 @@ food_suggestion_prompt = ChatPromptTemplate.from_messages(
             "✔️ **Use `AnswerQuestion` as the sole response format—do not provide direct recommendations outside this structure.**\n"
             "✔️ **Maintain professional yet engaging language, avoiding technical process explanations.**\n"
             "✔️ **Ensure responses are structured, relevant, and user-friendly.**\n"
-            "✔️ **Try to understand and guess what is the user looking for.**\n"
-            "✔️ **Make sure the foods you offer are varied.**\n\n"
+            "✔️ **Try to understand and infer what the user is looking for.**\n"
+            "✔️ **Ensure the foods you offer are varied and diverse.**\n\n"
+            
             "📌 **REMEMBER:** Your response **must** be formatted correctly to fill the `AnswerQuestion` tool, ensuring accurate, validated, and structured food recommendations."
         ),
         ("user", "{messages}")
     ]
 )
+
 
 
 
@@ -231,6 +239,7 @@ food_revision_prompt = ChatPromptTemplate.from_messages(
             "✔ **Ensure the final list is practical, well-structured, and concise and varied (if possible).**\n"
             "✔ **Dont worry about location of restaurant if not mentioned by user**\n"
             "✔ **Never remove options which are available and align with user criteria! **\n"
+            "✔ **TRY TO CATCH WHICH FOOD IS MISSING! **\n"
         ),
         ("user", "{messages}")
     ]
