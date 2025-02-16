@@ -36,7 +36,7 @@ async def on_message(msg: cl.Message):
             }
         }
 
-        async with cl.Step(name="Gemini", type="llm") as step:
+        async with cl.Step(name="Primary Assistant", type="llm") as step:
             step.input = msg.content
             step.output = ""
 

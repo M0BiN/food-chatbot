@@ -48,7 +48,7 @@ def _get_num_iterations(state: list):
     return i
 
 
-MAX_ITERATIONS = 2
+MAX_ITERATIONS = 1
 def route_food_suggestion(
     state: State,
 ):
