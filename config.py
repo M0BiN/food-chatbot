@@ -5,4 +5,4 @@ from langchain_openai import ChatOpenAI
 
 
 BASE_URL = "https://api.avalai.ir/v1"
-llm = ChatOpenAI(model="gpt-4o", base_url=BASE_URL, temperature=0.0001, max_tokens=2048)
+llm = ChatOpenAI(model="gpt-4o-mini", base_url=BASE_URL, temperature=0.2, max_tokens=2048)

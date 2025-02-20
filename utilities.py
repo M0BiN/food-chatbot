@@ -72,7 +72,7 @@ def document_search(query:str, min_score:float=0.65)->List[SearchResult]:
     try:
         return [item for item in (food_table
         .search(query, query_type="hybrid")
-        .limit(2)
+        .limit(10)
         .rerank(reranker=reranker)
         .select(["id", "text"])
         .to_list()) if item["_relevance_score"] > min_score]

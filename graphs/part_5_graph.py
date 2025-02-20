@@ -41,6 +41,7 @@ def _get_num_iterations(state: list):
     for msg in reversed(state):
         if isinstance(msg, AIMessage) and msg.tool_calls:
             for tool_call in msg.tool_calls:
+                print(tool_call["name"])
                 if tool_call["name"] == "ReviseFoodRecommendation":
                     i += 1
         elif isinstance(msg, HumanMessage):

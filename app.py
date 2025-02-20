@@ -33,7 +33,8 @@ async def on_message(msg: cl.Message):
             "configurable": {
                 "user_info": "Ali Akbar",
                 "thread_id": cl.user_session.get("thread_id"),
-            }
+                
+            }, "recursion_limit": 100
         }
 
         async with cl.Step(name="Primary Assistant", type="llm") as step:
